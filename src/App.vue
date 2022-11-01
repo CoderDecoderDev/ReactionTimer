@@ -1,18 +1,29 @@
 <template>
-  <h1 class="title is-1 py-5">Reaction Timer</h1>
-  <p class="">What are your reactions like? A typical human reaction time is 200 to 300 milliseconds. Our tool will test your reaction time and show you the results. </p>
-  <p>Please press this button in order to check your reaction time:</p>
-  <button @click="start" :disabled="isPlaying" class="button is-success is-medium my-3">Play</button>
-  <Block v-if="isPlaying" :delay="delay" @end="endGame"/>
-  <p v-if="showResult" class="content is-large">Your reaction time is: {{ score }} ms.</p>
+<section class="section m-5">
+  <div class="container">
+      <h1 class="title is-1 pb-5">Reaction Timer</h1>
+      <p class="pb-5">What are your reactions like? Are you as fast as a bullet or as slow as a snail? A typical human reaction time is 200 to 300 milliseconds. 
+        Our tool will test your reaction time and show you the results.
+      </p>
+      <p class="pb-5">
+        In order to start playing the game, please press the green button below.
+        When you see the green box on the screen (below the button), click on it as fast as possible.
+      </p>
+      <p class="is-size-5 has-text-weight-bold has-background-success-light">Please press this button in order to start playing the game:</p>
+      <button @click="start" :disabled="isPlaying" class="button is-success is-medium m-5">Play</button>
+      <Block v-if="isPlaying" :delay="delay" @end="endGame"/>
+      <Results v-if="showResult" :score="score" />
+    </div>
+</section>
 </template>
 
 <script>
 import Block from "./components/Block.vue"
+import Results from "./components/Results.vue"
 
 export default {
   name: 'App',
-  components: {Block},
+  components: { Block, Results },
   data() {
     return {
       isPlaying: false,
@@ -45,8 +56,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: auto;
+  padding: auto;
+  width: auto;
+  font-weight: 500;
 }
-
-
 </style>
